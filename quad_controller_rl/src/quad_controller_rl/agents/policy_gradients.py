@@ -50,7 +50,7 @@ class Actor:
         # Optimizer and Training Function
         optimizer = optimizers.Adam()
         updates_op = optimizer.get_updates(params=self.model.trainable_weights, loss=loss)
-        self.train_fn = K.function(inputs=[self.model.input, action_grads, K.learning_phase()], outputs=[], updates=updates_op)
+        self.train_fn = K.function(inputs=[self.model.input, action_grads, K.learning_phase()], outputs=[self.model.output], updates=updates_op)
         
 
 # Create DDPG Critic
